@@ -23,10 +23,10 @@
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
-                        <li><a href="workPlanList.jsp"><i class="icon-font">&#xe008;</i>工作计划</a></li>
-                        <li><a href="/studentReqest/studentRequestList.jsp"><i class="icon-font">&#xe005;</i>学生申请</a></li>
-                        <li><a href="/examine/examineList.jsp"><i class="icon-font">&#xe006;</i>考核记录</a></li>
-                        <li><a href=""><i class="icon-font">&#xe017;</i>退出登录</a></li>
+                        <li><a href="workList.action"><i class="icon-font">&#xe008;</i>工作计划</a></li>
+                        <li><a href="requestList.action"><i class="icon-font">&#xe005;</i>学生申请</a></li>
+                        <li><a href="examineList.action"><i class="icon-font">&#xe006;</i>考核记录</a></li>
+                        <li><a href="logoutAction.action"><i class="icon-font">&#xe017;</i>退出登录</a></li>
                     </ul>
                 </li>
             </ul>
@@ -37,8 +37,10 @@
 
         <div class="crumb-wrap">
             <div class="crumb-list"><i class="icon-font"></i>
-                <a href="workPlanList.jsp">首页</a><span class="crumb-step">&gt;</span>
-                <a class="crumb-name" href="workPlanList.jsp">工作计划</a>
+                <a href="workList.action">首页</a><span class="crumb-step">&gt;</span>
+                <a class="crumb-name" href="workList.action">工作计划</a>
+                <span class="crumb-step">&gt;</span>
+                <a class="crumb-name" href="workContractList.jsp">合同列表</a>
                 <span class="crumb-step">&gt;</span><span>合同</span></div>
         </div>
         <div class="search-wrap">
@@ -46,22 +48,22 @@
                 <form action="#" method="post">
                     <table class="result-tab" width="100%">
                         <tr>
-
                             <th>地点</th>
                             <th>标题</th>
-                            <th>时间(天)</th>
-                            <th>人数(人)</th>
-                            <th>工时(时/人)</th>
-                            <th>工资(元/时)</th>
+                            <th>人数</th>
+                            <th>最低工时</th>
+                            <th>工资</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
                         </tr>
                         <tr>
-
-                            <td>第一食堂</td>  <!--标签ID-->
-                            <td>擦桌子</td>
-                            <td>10天</td> <!--标签名称-->
-                            <td>5</td>
-                            <td>20</td>
-                            <td>20</td>
+                            <td>${work.workPlace}</td>
+                            <td>${work.workTitle}</td>
+                            <td>${work.workPersonNum}</td>
+                            <td>${work.workHour}</td>
+                            <td>${work.workSalary}</td>
+                            <td>${work.startTime}</td>
+                            <td>${work.endTime}</td>
                         </tr>
                     </table>
                 </form>

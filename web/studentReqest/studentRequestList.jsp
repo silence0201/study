@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: silence
@@ -23,10 +24,10 @@
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
-                        <li><a href="/workPlan/workPlanList.jsp"><i class="icon-font">&#xe008;</i>工作计划</a></li>
-                        <li><a href="studentRequestList.jsp"><i class="icon-font">&#xe005;</i>学生申请</a></li>
-                        <li><a href="/examine/examineList.jsp"><i class="icon-font">&#xe006;</i>考核记录</a></li>
-                        <li><a href=""><i class="icon-font">&#xe017;</i>退出登录</a></li>
+                        <li><a href="workList.action"><i class="icon-font">&#xe008;</i>工作计划</a></li>
+                        <li><a href="requestList.action"><i class="icon-font">&#xe005;</i>学生申请</a></li>
+                        <li><a href="examineList.action"><i class="icon-font">&#xe006;</i>考核记录</a></li>
+                        <li><a href="logoutAction.action"><i class="icon-font">&#xe017;</i>退出登录</a></li>
                     </ul>
                 </li>
             </ul>
@@ -42,14 +43,7 @@
             <div class="search-content">
                 <form action="#" method="post">
                     <table class="search-tab">
-                        <tr>
-                            <th width="120">选择分类:</th>
-                            <td>
-                                <select name="search-sort" id="">
-                                    <option value="class00">全部</option>
-                                </select>
-                            </td>
-                        </tr>
+
                     </table>
                 </form>
             </div>
@@ -58,7 +52,7 @@
             <form name="myform" id="myform" method="post">
                 <div class="result-title">
                     <div class="result-list">
-                        <a href="studentRequestAdd.jsp"><i class="icon-font"></i>新增申请</a>
+                        <a href="initStudentAdd.action"><i class="icon-font"></i>新增申请</a>
                     </div>
                 </div>
                 <div class="result-content">
@@ -74,34 +68,31 @@
                             <th>状态</th>
                             <th>操作</th>
                         </tr>
-                        <tr>
-                            <td>01</td>  <!--标签ID-->
-                            <td>学霸</td> <!--标签名称-->
-                            <td>1383838438</td>
-                            <td>第一食堂</td> <!--标签名称-->
-                            <td>第二食堂</td> <!--标签名称-->
-                            <td>计算机</td> <!--标签名称-->
-                            <td>软工</td> <!--标签名称-->
-                            <td>空闲</td> <!--标签名称-->
-                            <td>
-                                <a class="link-update" href="studentRequestModify.jsp">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>08</td>  <!--标签ID-->
-                            <td>科技</td> <!--标签名称-->
-                            <td>科学究竟是什么</td>
-                            <td>第一食堂</td> <!--标签名称-->
-                            <td>第二食堂</td> <!--标签名称-->
-                            <td>计算机</td> <!--标签名称-->
-                            <td>软工</td> <!--标签名称-->
-                            <td>工作</td> <!--标签名称-->
-                            <td>
-                                <a class="link-update" href="studentRequestModify.jsp">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
+                        <c:forEach items="${requestScope.requests}" var="request">
+                            <tr>
+                                <td>${request.student.studentId}</td>
+                                <td>${request.student.studentName}</td>
+                                <td>${request.student.studentPhone}</td>
+                                <td>${request.studentFirstChoice}</td>
+                                <td>${request.studenSecondChoice}</td>
+                                <td>${request.student.studentAcademy}</td>
+                                <td>${request.student.studentMajor}</td>
+                                <td>${request.requestStatus}</td>
+                                <c:if test="${request.requestStatus.equals('未分配')}">
+                                    <td>
+                                        <a class="link-update" href="initModifyStudentRequest.action?studentRequestId=${request.requestId}">修改</a>
+                                        <a class="link-del" href="deleteStudentRequest.action?studentRequestId=${request.requestId}">删除</a>
+                                    </td>
+                                </c:if>
+
+                                <c:if test="${request.requestStatus.equals('已分配')}">
+                                    <td>
+                                        <a class="link-del" href="studentRequestInfo.action?studentId=${request.student.studentId}">详情</a>
+                                    </td>
+                                </c:if>
+
+                            </tr>
+                        </c:forEach>
                     </table>
                 </div>
             </form>

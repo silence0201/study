@@ -5,4 +5,119 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+    <package name="struct" extends="struts-default">
+        <action name="loginAction" class="action.LoginAction" method="login">
+            <result name="success" type="redirect">workList.action</result>
+            <result name="error">/loginFail.jsp</result>
+        </action>
+        
+        <action name="logoutAction" class="action.LoginAction" method="logout">
+            <result name="success">/login.jsp</result>
+        </action>
+
+        <action name="initAddWorkPlan" class="action.WorkPlanAction" method="initAdd">
+            <result name="success">/workPlan/workPlanAdd.jsp</result>
+        </action>
+        <action name="workPlanAddAction" class="action.WorkPlanAction" method="add">
+            <result name="success" type="redirect">workList.action</result>
+            <result name="input">/workPlan/workPlanAdd.jsp</result>
+        </action>
+
+        <action name="initStudentAdd" class="action.StudentRequestAction" method="initAdd">
+            <result name="success" >/studentReqest/studentRequestAdd.jsp</result>
+        </action>
+
+        <action name="studentRequestAddAction" class="action.StudentRequestAction" method="add">
+            <result name="success" type="redirect">requestList.action</result>
+            <result name="error">/studentReqest/studentRequestAdd.jsp</result>
+        </action>
+
+        <action name="workList" class="action.WorkPlanAction" method="list">
+            <result name="success">/workPlan/workPlanList.jsp</result>
+        </action>
+
+        <action name="initModifyWorkPlan" class="action.WorkPlanAction" method="initModify">
+            <result name="success">/workPlan/workPlanModify.jsp</result>
+        </action>
+
+        <action name="modifyWorkPlan" class="action.WorkPlanAction" method="modify">
+            <result name="success">/workPlan/workPlanModify.jsp</result>
+        </action>
+
+        <action name="requestList" class="action.StudentRequestAction" method="list">
+            <result name="success">/studentReqest/studentRequestList.jsp</result>
+        </action>
+
+        <action name="examineList" class="action.ExamineAction" method="list">
+            <result name="success">/examine/examineList.jsp</result>
+        </action>
+
+        <action name="examineStudentID" class="action.ExamineAction" method="examinOfStudent">
+            <result name="success">/examine/examineListInfo.jsp</result>
+        </action>
+
+        <action name="monetary" class="action.ExamineAction" method="monetaries">
+            <result>/examine/monetary.jsp</result>
+        </action>
+
+        <action name="settle" class="action.ExamineAction" method="setleMonetary">
+            <result name="success" type="redirect">examineList.action</result>
+        </action>
+
+        <action name="monetaryInfo" class="action.ExamineAction" method="studentMonInfo">
+            <result name="success">/examine/monetaryInfo.jsp</result>
+        </action>
+
+        <action name="initModifyStudentRequest" class="action.StudentRequestAction" method="initModify">
+            <result name="success">/studentReqest/studentRequestModify.jsp</result>
+        </action>
+
+        <action name="modifyStudentRequest" class="action.StudentRequestAction" method="modify">
+            <result name="success" type="redirect">requestList.action</result>
+        </action>
+
+        <action name="deleteStudentRequest" class="action.StudentRequestAction" method="delete">
+            <result name="success" type="redirect">requestList.action</result>
+        </action>
+
+        <action name="deleteWork" class="action.WorkPlanAction" method="delete">
+            <result name="success" type="redirect">workList.action</result>
+        </action>
+
+        <action name="studentRequestInfo" class="action.StudentRequestAction" method="requestInfo">
+            <result name="success" >/studentReqest/studentRequestInfo.jsp</result>
+        </action>
+
+        <action name="workDistributionInfo" class="action.WorkPlanAction" method="distributionInfo">
+            <result name="success">/workPlan/workPlanDistributionInfo.jsp</result>
+        </action>
+
+        <action name="workDistribution" class="action.WorkPlanAction" method="distribution">
+            <result name="success" type="redirect">workList.action</result>
+        </action>
+
+        <action name="initWorkDistribution" class="action.WorkPlanAction" method="initDistribution">
+            <result name="success">/workPlan/workPlanDistribution.jsp</result>
+        </action>
+        <!--  -->
+        <action name="workContractList" class="action.WorkPlanAction" method="list">
+            <result name="success">/workPlan/workContractList.jsp</result>
+        </action>
+        <!--  -->
+        <action name="workContract" class="action.WorkPlanAction" method="initModify">
+            <result name="success">/workPlan/workContract.jsp</result>
+        </action>
+        <!--  -->
+        <action name="workExamineList" class="action.WorkPlanAction" method="list">
+            <result name="success">/workPlan/workExamineList.jsp</result>
+        </action>
+
+        <action name="initWorkExamine" class="action.WorkPlanAction" method="initWorkExamine">
+            <result name="success">/workPlan/workExamine.jsp</result>
+        </action>
+
+        <action name="workExamine" class="action.WorkPlanAction" method="workExamine">
+            <result name="success" type="redirect">workExamineList.action</result>
+        </action>
+    </package>
 </struts>
